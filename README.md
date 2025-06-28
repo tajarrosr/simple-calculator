@@ -13,7 +13,7 @@ A simple calculator using inline HTML, CSS, and JavaScript. It supports basic ma
    - Click the green `Code` button and choose `Download ZIP`, then extract it.
    - **OR** run this command:
      ```bash
-     git clone https://github.com/your-username/simple-calculator.git](https://github.com/tajarrosr/simple-calculator.git
+     git clone https://github.com/tajarrosr/simple-calculator.git
      ```
 
 2. **Open the project folder.**
