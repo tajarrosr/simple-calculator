@@ -1,4 +1,4 @@
-# 🔢 Simple Calculator (Responsive)
+# 🔢 Simple Calculator (Responsive)s
 
 ## 📌 Description
 A simple calculator using inline HTML, CSS, and JavaScript. It supports basic math operations like addition, subtraction, multiplication, and division. The layout is responsive for mobile and desktop.
