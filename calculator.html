@@ -99,43 +99,44 @@
         <button onclick="updateCalculation('7')">7</button>
         <button onclick="updateCalculation('8')">8</button>
         <button onclick="updateCalculation('9')">9</button>
-        <button class="operator" onclick="updateCalculation(' / ')">÷</button>
+        <button class="operator" data-value=" / ">÷</button>
 
         <button onclick="updateCalculation('4')">4</button>
         <button onclick="updateCalculation('5')">5</button>
         <button onclick="updateCalculation('6')">6</button>
-        <button class="operator" onclick="updateCalculation(' * ')">×</button>
+        <button class="operator" data-value=" * ">×</button>
 
         <button onclick="updateCalculation('1')">1</button>
         <button onclick="updateCalculation('2')">2</button>
         <button onclick="updateCalculation('3')">3</button>
-        <button class="operator" onclick="updateCalculation(' - ')">−</button>
+        <button class="operator" data-value=" - ">−</button>
 
         <button onclick="updateCalculation('0')">0</button>
         <button onclick="updateCalculation('.')">.</button>
         <button class="equal" onclick="calculateResult()">=</button>
-        <button class="operator" onclick="updateCalculation(' + ')">+</button>
+        <button class="operator" data-value=" + ">+</button>
 
-        <button class="clear" onclick="clearCalculation()">C</button>
+        <button class="clear">C</button>
       </div>
     </div>
 
     <script>
       let calculation = localStorage.getItem("calculation") || "";
-      displayCalculation();
 
-      function updateCalculation(value) {
+      const display = document.querySelector(".js-calculation");
+      const buttons = document.querySelectorAll(".buttons button");
+
+      const displayCalculation = () => {
+        display.textContent = calculation || "0";
+      };
+
+      const updateCalculation = (value) => {
         calculation += value;
         displayCalculation();
         localStorage.setItem("calculation", calculation);
-      }
+      };
 
-      function displayCalculation() {
-        document.querySelector(".js-calculation").innerHTML =
-          calculation || "0";
-      }
-
-      function calculateResult() {
+      const calculateResult = () => {
         try {
           calculation = eval(calculation);
           displayCalculation();
@@ -143,13 +144,27 @@
         } catch (error) {
           alert("Invalid Expression");
         }
-      }
+      };
 
-      function clearCalculation() {
+      const clearCalculation = () => {
         calculation = "";
         displayCalculation();
         localStorage.setItem("calculation", calculation);
-      }
+      };
+
+      buttons.forEach((button) => {
+        if (button.dataset.value) {
+          button.addEventListener("click", () =>
+            updateCalculation(button.dataset.value)
+          );
+        } else if (button.classList.contains("equal")) {
+          button.addEventListener("click", calculateResult);
+        } else if (button.classList.contains("clear")) {
+          button.addEventListener("click", clearCalculation);
+        }
+      });
+
+      displayCalculation();
     </script>
   </body>
 </html>
